@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي - موقعنا</title>
+    
+    <!-- خطوط Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ملفات CSS الأساسية -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- ملف CSS الخاص بالصفحة -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+    <style>
+        /* إضافة تنسيق زر تسجيل الخروج */
+        .logout-btn {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+            background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+        }
+        
+        .logout-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(220, 53, 69, 0.3);
+        }
+        
+        .logout-btn i {
+            font-size: 18px;
+        }
+        
+        /* تنسيق رسالة الوداع */
+        .logout-message {
+            display: none;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التقدم -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+    
+    <!-- رأس الصفحة -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-top">
+                <!-- زر الرجوع -->
+                <button class="icon-btn" onclick="window.location.href='dashboard.html'">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                
+                <!-- الشعار في المنتصف -->
+                <div class="logo-center">
+                    <img src="logo.png" alt="شعار الموقع" class="dashboard-logo">
+                </div>
+                
+                <!-- العداد -->
+                <div class="points-counter">
+                    <i class="fas fa-coins"></i>
+                    <span id="profile-points">1</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- محتوى الصفحة -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- رسالة الوداع -->
+            <div id="logout-message" class="logout-message">
+                <i class="fas fa-heart"></i>
+                <span id="goodbye-text"></span>
+            </div>
+            
+            <!-- بطاقة الملف الشخصي -->
+            <div class="profile-card card">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h2 id="profile-name">المستخدم</h2>
+                    <p class="text-muted" id="profile-username">@username</p>
+                </div>
+                
+                <div class="profile-info">
+                    <h3><i class="fas fa-user-edit"></i> المعلومات الشخصية</h3>
+                    
+                    <div class="info-item">
+                        <label><i class="fas fa-user"></i> الاسم الكامل</label>
+                        <input type="text" id="edit-fullname" class="form-control" placeholder="الاسم الكامل">
+                    </div>
+                    
+                    <div class="info-item">
+                        <label><i class="fas fa-at"></i> اسم المستخدم</label>
+                        <input type="text" id="edit-username" class="form-control" placeholder="اسم المستخدم" disabled>
+                    </div>
+                    
+                    <div class="info-item">
+                        <label><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
+                        <input type="email" id="edit-email" class="form-control" placeholder="البريد الإلكتروني">
+                    </div>
+                    
+                    <div class="info-item">
+                        <label><i class="fas fa-phone"></i> رقم الهاتف</label>
+                        <input type="tel" id="edit-phone" class="form-control" placeholder="رقم الهاتف">
+                    </div>
+                    
+                    <button class="btn btn-primary btn-block" id="save-profile">
+                        <i class="fas fa-save"></i> حفظ التغييرات
+                    </button>
+                </div>
+                
+                <div class="profile-settings">
+                    <h3><i class="fas fa-cog"></i> <span class="settings-title">الإعدادات</span></h3>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <i class="fas fa-moon"></i>
+                            <span class="setting-text">الوضع الليلي</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="dark-mode-toggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <i class="fas fa-bell"></i>
+                            <span class="setting-text">الإشعارات</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="notifications-toggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <i class="fas fa-shield-alt"></i>
+                            <span class="setting-text">المصادقة الثنائية</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="twofactor-toggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="btn btn-outline btn-block" id="change-password">
+                        <i class="fas fa-lock"></i> تغيير كلمة المرور
+                    </button>
+                    
+                    <button class="btn btn-outline btn-block" id="export-data">
+                        <i class="fas fa-download"></i> تصدير البيانات
+                    </button>
+                    
+                    <button class="btn btn-danger btn-block" id="delete-account">
+                        <i class="fas fa-trash"></i> حذف الحساب
+                    </button>
+                    
+                    <!-- زر تسجيل الخروج المضاف -->
+                    <button id="logout-btn" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- شريط التنقل السفلي -->
+    <nav class="bottom-nav">
+        <a href="dashboard.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>الرئيسية</span>
+        </a>
+        <a href="info.html" class="nav-item">
+            <i class="fas fa-info-circle"></i>
+            <span>معلومات</span>
+        </a>
+        <a href="pofile.html" class="nav-item active">
+            <i class="fas fa-user-cog"></i>
+            <span>الإعدادات</span>
+        </a>
+    </nav>
+    
+    <!-- ملفات JavaScript الأساسية -->
+    <script src="js/theme.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <!-- ملف JavaScript الخاص بالصفحة -->
+    <script src="js/profile.js"></script>
+    
+    <!-- التهيئة مع إضافة دالة تسجيل الخروج -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة إدارة الوضع الليلي
+            const themeManager = new ThemeManager();
+            
+            // تهيئة شريط التقدم
+            const progressBar = new ProgressBar();
+            
+            // تهيئة المصادقة
+            const authManager = new AuthManager();
+            
+            // إضافة مستمع لزر تسجيل الخروج
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    // الحصول على اسم المستخدم الحالي
+                    const userName = document.getElementById('profile-name').textContent || 'العزيز';
+                    const goodbyeText = document.getElementById('goodbye-text');
+                    const logoutMessage = document.getElementById('logout-message');
+                    
+                    // طلب تأكيد مع اسم المستخدم
+                    if (confirm(`مرحباً ${userName}، هل تريد تسجيل الخروج؟`)) {
+                        // إظهار رسالة الوداع
+                        goodbyeText.textContent = `وداعاً ${userName}، نتمنى لك يوماً سعيداً!`;
+                        logoutMessage.style.display = 'block';
+                        
+                        // إضافة تأخير لعرض الرسالة
+                        setTimeout(function() {
+                            // حفظ إعدادات المظهر إذا كانت موجودة
+                            const currentTheme = document.body.getAttribute('data-theme');
+                            const notificationsEnabled = document.getElementById('notifications-toggle').checked;
+                            
+                            // مسح بيانات المستخدم فقط
+                            localStorage.removeItem('user_data');
+                            localStorage.removeItem('user_points');
+                            localStorage.removeItem('current_user');
+                            
+                            // الاحتفاظ بإعدادات المظهر
+                            if (currentTheme) {
+                                localStorage.setItem('theme', currentTheme);
+                            }
+                            
+                            // الاحتفاظ بإعدادات الإشعارات
+                            localStorage.setItem('notifications', notificationsEnabled);
+                            
+                            // إعادة التوجيه إلى صفحة تسجيل الدخول
+                            window.location.href = 'index.html';
+                        }, 2000);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

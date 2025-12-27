@@ -1,0 +1,65 @@
+/* إصلاح مشكلة النصوص في الوضع الليلي */
+[data-theme="dark"] .setting-label {
+    color: var(--dark-color) !important;
+}
+
+
+
+[data-theme="dark"] .info-item label {
+    color: var(--dark-color) !important;
+}
+
+[data-theme="dark"] .form-control {
+    background-color: var(--light-card) !important;
+    color: var(--dark-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .form-control:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.2) !important;
+}
+
+/* إصلاح ألوان النصوص في صفحة المعلومات */
+[data-theme="dark"] .info-section h3 {
+    color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .info-section p,
+[data-theme="dark"] .info-section li {
+    color:var(--info-color) !important;
+    
+}
+
+[data-theme="dark"] .app-version {
+    color: var(--gray-color) !important;
+}
+
+/* إصلاح ألوان النصوص في الإشعارات */
+[data-theme="dark"] .notification-content h4 {
+    color: var(--dark-color) !important;
+}
+
+[data-theme="dark"] .notification-content p {
+    color: var(--gray-color) !important;
+}
+
+/* إصلاح ألوان النصوص في النشاطات */
+[data-theme="dark"] .activity-details h4 {
+    color: var(--dark-color) !important;
+}
+
+[data-theme="dark"] .activity-details p {
+    color: var(--gray-color) !important;
+}
+
+/* إصلاح ألوان الأزرار في الوضع الليلي */
+[data-theme="dark"] .btn-outline {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+[data-theme="dark"] .btn-outline:hover {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}

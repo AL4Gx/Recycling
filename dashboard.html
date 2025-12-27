@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرئيسية - موقعنا</title>
+    
+    <!-- خطوط Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ملفات CSS الأساسية -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- ملف CSS الخاص بالصفحة -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+    <!-- مكتبة توليد الباركود -->
+    <script src="https://unpkg.com/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+    <!-- شريط التقدم -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+    
+    <!-- رأس الصفحة -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-top">
+                <!-- زر الإشعارات على اليسار -->
+                <button class="icon-btn notifications-btn" id="notifications-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </button>
+                
+                <!-- الشعار في المنتصف -->
+                <div class="logo-center">
+                    <img src="logo.png" alt="شعار الموقع" class="dashboard-logo">
+                </div>
+                
+                <!-- العداد على اليمين -->
+                <div class="points-counter">
+                    <i class="fas fa-coins"></i>
+                    <span id="points">1</span>
+                    <span class="points-label">نقطة</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- محتوى الصفحة الرئيسية -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- بطاقتان رئيسيتان -->
+            <div class="dashboard-cards">
+                <!-- بطاقة استقبال النقاط -->
+                <div class="dashboard-card receive-card" id="receive-card">
+                    <div class="card-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3>استقبال نقاط</h3>
+                    <p>اعرض باركودك لاستقبال النقاط</p>
+                    <div class="barcode-container" id="barcode-container">
+                        <!-- الباركود سيظهر هنا -->
+                        <canvas id="barcode-canvas"></canvas>
+                    </div>
+                    <button class="btn btn-primary btn-block" id="generate-barcode">
+                        <i class="fas fa-redo"></i> توليد باركود جديد
+                    </button>
+                </div>
+                
+                <!-- بطاقة مسح الباركود -->
+                <div class="dashboard-card scan-card" id="scan-card">
+                    <div class="card-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>مسح باركود</h3>
+                    <p>امسح باركود الآخرين لإرسال النقاط</p>
+                    <div class="camera-container" id="camera-container">
+                        <!-- محاكاة الكاميرا -->
+                        <div class="camera-placeholder">
+                            <i class="fas fa-camera"></i>
+                            <p>اضغط لفتح الكاميرا</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-block" id="start-scan">
+                        <i class="fas fa-camera"></i> بدء المسح
+                    </button>
+                </div>
+            </div>
+            
+            <!-- سجل النشاطات -->
+            <div class="activity-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-history"></i> النشاطات الأخيرة</h3>
+                    <a href="#" class="view-all">عرض الكل</a>
+                </div>
+                
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon received">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>استقبلت نقاط</h4>
+                            <p>من: أحمد محمد</p>
+                            <span class="activity-time">منذ 5 دقائق</span>
+                        </div>
+                        <div class="activity-points positive">
+                            +50 <i class="fas fa-coins"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon sent">
+                            <i class="fas fa-upload"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>أرسلت نقاط</h4>
+                            <p>إلى: سارة خالد</p>
+                            <span class="activity-time">منذ ساعة</span>
+                        </div>
+                        <div class="activity-points negative">
+                            -30 <i class="fas fa-coins"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon reward">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>مكافأة يومية</h4>
+                            <p>تسجيل دخول يومي</p>
+                            <span class="activity-time">منذ يوم</span>
+                        </div>
+                        <div class="activity-points positive">
+                            +10 <i class="fas fa-coins"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- شريط التنقل السفلي -->
+    <nav class="bottom-nav">
+        <a href="dashboard.html" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>الرئيسية</span>
+        </a>
+        <a href="info.html" class="nav-item">
+            <i class="fas fa-info-circle"></i>
+            <span>معلومات</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+            <i class="fas fa-user-cog"></i>
+            <span>الإعدادات</span>
+        </a>
+    </nav>
+    
+    <!-- نافذة الإشعارات -->
+    <div class="notifications-panel" id="notifications-panel">
+        <div class="notifications-header">
+            <h3><i class="fas fa-bell"></i> الإشعارات</h3>
+            <button class="close-btn" id="close-notifications">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="notifications-list">
+            <div class="notification-item unread">
+                <div class="notification-icon">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>تم استقبال نقاط</h4>
+                    <p>استقبلت 50 نقطة من أحمد محمد</p>
+                    <span class="notification-time">الآن</span>
+                </div>
+            </div>
+            
+            <div class="notification-item unread">
+                <div class="notification-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>مكافأة يومية</h4>
+                    <p>احصل على 10 نقاط مجانية اليوم!</p>
+                    <span class="notification-time">منذ ساعة</span>
+                </div>
+            </div>
+            
+            <div class="notification-item">
+                <div class="notification-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="notification-content">
+                    <h4>تحديث أمان</h4>
+                    <p>تم تحديث نظام الحماية الخاص بك</p>
+                    <span class="notification-time">منذ يوم</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="notifications-footer">
+            <button class="btn btn-outline btn-block" id="mark-all-read">
+                <i class="fas fa-check-double"></i> تعيين الكل كمقروء
+            </button>
+        </div>
+    </div>
+    
+    <!-- ملفات JavaScript الأساسية -->
+    <script src="js/theme.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <!-- ملف JavaScript الخاص بالصفحة -->
+    <script src="js/dashboard.js"></script>
+    <!-- التهيئة -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة إدارة الوضع الليلي
+            const themeManager = new ThemeManager();
+            
+            // تهيئة شريط التقدم
+            const progressBar = new ProgressBar();
+            
+            // تهيئة المصادقة
+            const authManager = new AuthManager();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+/* ===== أنماط صفحات التسجيل ===== */
+.signup-container {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup-form .form-card {
+    max-width: 500px;
+}
+
+.password-strength {
+    height: 5px;
+    background-color: #eee;
+    border-radius: var(--border-radius);
+    margin-top: var(--spacing-xs);
+    overflow: hidden;
+}
+
+.strength-meter {
+    height: 100%;
+    width: 0%;
+    border-radius: var(--border-radius);
+    transition: width 0.3s ease;
+}
+
+.terms-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-lg);
+}
+
+.terms-checkbox input[type="checkbox"] {
+    margin-top: 4px;
+}
+
+.terms-checkbox label {
+    font-size: var(--font-size-sm);
+    color: var(--gray-color);
+}

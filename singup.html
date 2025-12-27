@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعنا - إنشاء حساب</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo-container">
+                    <img src="logo.png" alt="شعار الموقع" class="logo-image">
+                    <div class="logo-text">موقعنا</div>
+                </div>
+                <button class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-container signup-container">
+            <div class="form-card card signup-form">
+                <div class="form-header">
+                    <h1>إنشاء حساب جديد</h1>
+                    <p class="text-muted">املأ النموذج أدناه لإنشاء حساب جديد</p>
+                </div>
+
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="full_name">الاسم الكامل</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="full_name" name="full_name" class="form-control" placeholder="أدخل اسمك الكامل" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">اسم المستخدم</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-at"></i>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="اختر اسم مستخدم" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="أدخل بريدك الإلكتروني" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="أدخل رقم هاتفك" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">كلمة المرور</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" class="form-control" placeholder="أنشئ كلمة مرور قوية" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">تأكيد كلمة المرور</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="أعد كتابة كلمة المرور" required>
+                        </div>
+                    </div>
+
+                    <div class="terms-checkbox">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">أوافق على <a href="#" style="color: var(--primary-color);">شروط الخدمة</a> و<a href="#" style="color: var(--primary-color);">سياسة الخصوصية</a></label>
+                    </div>
+
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-user-plus"></i> إنشاء الحساب
+                        </button>
+                        <p class="text-muted" style="margin-top: var(--spacing-lg);">
+                            لديك حساب بالفعل؟ 
+                            <a href="index.html" style="font-weight: 600; color: var(--primary-color); text-decoration: underline;">
+                                سجل الدخول هنا
+                            </a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            &copy; 2025 جميع الحقوق محفوظة | موقعنا
+        </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/auth.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة إدارة الوضع الليلي
+            if (typeof ThemeManager !== 'undefined') {
+                const themeManager = new ThemeManager();
+            }
+            
+            // تهيئة شريط التقدم
+            if (typeof ProgressBar !== 'undefined') {
+                const progressBar = new ProgressBar();
+            }
+            
+            // تهيئة التنقل
+            if (typeof NavigationManager !== 'undefined') {
+                const navigationManager = new NavigationManager();
+            }
+
+            const signupForm = document.getElementById('signupForm');
+            if (signupForm) {
+                signupForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // الحصول على القيم من الحقول
+                    const full_name = document.getElementById('full_name').value.trim();
+                    const username = document.getElementById('username').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+                    const password = document.getElementById('password').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+                    const termsAccepted = document.getElementById('terms').checked;
+
+                    // التحقق من الحقول
+                    if (!full_name || !username || !email || !phone || !password || !confirmPassword) {
+                        showMessage('يرجى ملء جميع الحقول', 'error');
+                        return;
+                    }
+                    
+                    // التحقق من صحة البريد الإلكتروني
+                    if (!isValidEmail(email)) {
+                        showMessage('يرجى إدخال بريد إلكتروني صحيح', 'error');
+                        return;
+                    }
+                    
+                    if (!termsAccepted) {
+                        showMessage('يجب الموافقة على الشروط والأحكام', 'error');
+                        return;
+                    }
+                    
+                    if (password !== confirmPassword) {
+                        showMessage('كلمات المرور غير متطابقة', 'error');
+                        return;
+                    }
+                    
+                    if (password.length < 6) {
+                        showMessage('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+                        return;
+                    }
+
+                    try {
+                        // استدعاء دالة التسجيل من authManager
+                        const result = await authManager.register({
+                            full_name: full_name,
+                            username: username,
+                            email: email,
+                            phone: phone,
+                            password: password,
+                            confirmPassword: confirmPassword
+                        });
+                        
+                        if (result.success) {
+                            showMessage('تم إنشاء الحساب بنجاح!', 'success');
+                            
+                            // الانتقال إلى dashboard بعد تأخير
+                            setTimeout(() => {
+                                window.location.href = 'dashboard.html';
+                            }, 2000);
+                        } else {
+                            showMessage(result.message || 'حدث خطأ في إنشاء الحساب', 'error');
+                        }
+                    } catch (error) {
+                        console.error('خطأ في التسجيل:', error);
+                        showMessage('حدث خطأ في الاتصال بالخادم', 'error');
+                    }
+                });
+            }
+            
+            // دالة التحقق من صحة البريد الإلكتروني
+            function isValidEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            // دالة عرض الرسائل
+            function showMessage(message, type = 'info') {
+                // إزالة أي رسالة سابقة
+                const oldMessage = document.querySelector('.auth-message');
+                if (oldMessage) {
+                    oldMessage.remove();
+                }
+                
+                // إنشاء عنصر الرسالة الجديدة
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `auth-message ${type}`;
+                messageDiv.innerHTML = `
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
+                `;
+                
+                messageDiv.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#28a745' : '#dc3545'};
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    z-index: 10000;
+                    animation: slideInRight 0.3s ease;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                    font-family: 'Cairo', sans-serif;
+                `;
+                
+                document.body.appendChild(messageDiv);
+                
+                // إزالة الرسالة بعد 3 ثوانٍ
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.style.animation = 'slideOutRight 0.3s ease';
+                        setTimeout(() => {
+                            if (messageDiv.parentNode) {
+                                messageDiv.remove();
+                            }
+                        }, 300);
+                    }
+                }, 3000);
+            }
+            
+            // إضافة أنيميشن CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+                
+                @keyframes slideOutRight {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+/* ===== نظام الألوان الأخضر لإعادة التدوير ===== */
+:root {
+    /* الألوان الرئيسية - درجات الأخضر */
+    --primary-green: #10b981;      /* الأخضر الأساسي */
+    --green-light: #34d399;        /* أخضر فاتح */
+    --green-dark: #059669;         /* أخضر داكن */
+    --green-forest: #065f46;       /* أخضر غامق */
+    
+    /* الألوان المتناسقة */
+    --primary-color: var(--primary-green);
+    --secondary-color: var(--green-dark);
+    --accent-color: #3b82f6;       /* أزرق للتكامل */
+    --complementary: #8b5cf6;      /* بنفسجي للتكامل */
+    
+    /* ألوان الحالة */
+    --success-color: var(--primary-green);
+    --info-color: var(--accent-color);
+    --warning-color: #f59e0b;      /* برتقالي ذهبي */
+    --danger-color: #ef4444;       /* أحمر */
+    
+    /* ألوان التصميم */
+    --light-color: #f9fafb;        /* خلفية فاتحة */
+    --light-card: #ffffff;         /* بطاقات */
+    --dark-color: #1f2937;         /* نص داكن */
+    --gray-color: #6b7280;
+    --border-color: #e5e7eb;
+    
+    /* تدرجات للأزرار والتأثيرات */
+    --gradient-primary: linear-gradient(135deg, var(--primary-green), var(--green-dark));
+    --gradient-secondary: linear-gradient(135deg, var(--green-light), var(--accent-color));
+    
+    /* التصميم */
+    --border-radius: 12px;
+    --box-shadow: 0 10px 30px rgba(16, 185, 129, 0.1);
+    --box-shadow-hover: 0 15px 40px rgba(16, 185, 129, 0.15);
+    --transition: all 0.3s ease;
+    
+    /* الخطوط */
+    --font-family: 'Cairo', sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --font-size-4xl: 2.5rem;
+    
+    /* المسافات */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+}
+
+/* متغيرات الوضع الليلي */
+[data-theme="dark"] {
+    --primary-color: var(--green-light);
+    --secondary-color: var(--primary-green);
+    --light-color: #111827;        /* خلفية داكنة */
+    --light-card: #1f2937;         /* بطاقات داكنة */
+    --dark-color: #f9fafb;         /* نص فاتح */
+    --info-color:#1d1d1d;
+    --border-color: #374151;
+    --box-shadow: 0 10px 30px rgba(16, 185, 129, 0.15);
+    --box-shadow-hover: 0 15px 40px rgba(16, 185, 129, 0.25);
+}

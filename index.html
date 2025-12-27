@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقعنا</title>
+    
+    <!-- خطوط Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ملفات CSS الأساسية -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- ملف CSS الخاص بالصفحة -->
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <!-- شريط التقدم -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+    
+    <!-- الشريط العلوي -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo-container">
+                    <img src="logo.png" alt="شعار الموقع" class="logo-image">
+                    <div class="logo-text">موقعنا</div>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">تسجيل دخول</a></li>
+                </ul>
+                
+                <button class="theme-toggle">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- محتوى الصفحة -->
+    <main class="container">
+        <div class="form-container login-container">
+            <div class="form-card card login-form">
+                <div class="form-header">
+                    <h1>تسجيل الدخول</h1>
+                    <p class="text-muted">أدخل اسم المستخدم أو البريد الإلكتروني وكلمة المرور</p>
+                </div>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">اسم المستخدم أو البريد الإلكتروني</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" class="form-control" placeholder="أدخل اسم المستخدم أو البريد الإلكتروني" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">كلمة المرور</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" class="form-control" placeholder="أدخل كلمة المرور" required>
+                        </div>
+                    </div>
+                    
+                    <div class="login-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">تذكرني</label>
+                        </div>
+                        <a href="#" class="forgot-password">نسيت كلمة المرور؟</a>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                        </button>
+                        
+                        <p class="text-muted" style="margin-top: var(--spacing-lg);">
+                            ليس لديك حساب؟ 
+                            <a href="singup.html" style="font-weight: 600; color: var(--primary-color); text-decoration: underline;">
+                                أنشئ حساب جديد
+                            </a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; 2025 جميع الحقوق محفوظة | موقعنا
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ملفات JavaScript الأساسية -->
+    <script src="js/theme.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <!-- الكود المخصص لهذه الصفحة -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة إدارة الوضع الليلي
+            if (typeof ThemeManager !== 'undefined') {
+                const themeManager = new ThemeManager();
+            }
+            
+            // تهيئة شريط التقدم
+            if (typeof ProgressBar !== 'undefined') {
+                const progressBar = new ProgressBar();
+            }
+            
+            // تهيئة التنقل
+            if (typeof NavigationManager !== 'undefined') {
+                const navigationManager = new NavigationManager();
+            }
+            
+            // تحميل اسم المستخدم المحفوظ إذا كان موجوداً
+            const rememberedUsername = localStorage.getItem('rememberedUsername');
+            if (rememberedUsername) {
+                document.getElementById('username').value = rememberedUsername;
+                document.getElementById('remember').checked = true;
+            }
+            
+            // إضافة مستمع الحدث للنموذج
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // الحصول على القيم من الحقول
+                    const usernameOrEmail = document.getElementById('username').value.trim();
+                    const password = document.getElementById('password').value.trim();
+                    const rememberMe = document.getElementById('remember').checked;
+                    
+                    // التحقق من الحقول
+                    if (!usernameOrEmail || !password) {
+                        showMessage('يرجى ملء جميع الحقول', 'error');
+                        return;
+                    }
+                    
+                    try {
+                        // استدعاء دالة تسجيل الدخول من authManager
+                        const result = await authManager.login(usernameOrEmail, password, rememberMe);
+                        
+                        if (result.success) {
+                            showMessage('تم تسجيل الدخول بنجاح!', 'success');
+                            
+                            // الانتقال إلى dashboard بعد تأخير
+                            setTimeout(() => {
+                                window.location.href = 'dashboard.html';
+                            }, 1500);
+                        } else {
+                            showMessage(result.message || 'اسم المستخدم/البريد الإلكتروني أو كلمة المرور غير صحيحة', 'error');
+                        }
+                    } catch (error) {
+                        console.error('خطأ في تسجيل الدخول:', error);
+                        showMessage('حدث خطأ في الاتصال بالخادم', 'error');
+                    }
+                });
+            }
+            
+            // دالة عرض الرسائل
+            function showMessage(message, type = 'info') {
+                // إزالة أي رسالة سابقة
+                const oldMessage = document.querySelector('.auth-message');
+                if (oldMessage) {
+                    oldMessage.remove();
+                }
+                
+                // إنشاء عنصر الرسالة الجديدة
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `auth-message ${type}`;
+                messageDiv.innerHTML = `
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                    <span>${message}</span>
+                `;
+                
+                messageDiv.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background: ${type === 'success' ? '#28a745' : '#dc3545'};
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 8px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    z-index: 10000;
+                    animation: slideInRight 0.3s ease;
+                    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                    font-family: 'Cairo', sans-serif;
+                `;
+                
+                document.body.appendChild(messageDiv);
+                
+                // إزالة الرسالة بعد 3 ثوانٍ
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.style.animation = 'slideOutRight 0.3s ease';
+                        setTimeout(() => {
+                            if (messageDiv.parentNode) {
+                                messageDiv.remove();
+                            }
+                        }, 300);
+                    }
+                }, 3000);
+            }
+            
+            // إضافة أنيميشن CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+                
+                @keyframes slideOutRight {
+                    from {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                    to {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                }
+                
+                .btn-primary {
+                    transition: all 0.3s ease;
+                }
+                
+                .btn-primary:disabled {
+                    opacity: 0.7;
+                    cursor: not-allowed;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
